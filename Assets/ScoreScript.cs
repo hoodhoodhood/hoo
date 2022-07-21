@@ -20,7 +20,8 @@ public class ScoreScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             scoreNum += 5;
-            this.GetComponent<Text>().text = "점수 :" + scoreNum.ToString();
+            //this.GetComponent<Text>().text = "점수 :" + scoreNum.ToString();
+            this.GetComponent<Text>().text = $"점수 : {scoreNum}";
         }
     }
 }
