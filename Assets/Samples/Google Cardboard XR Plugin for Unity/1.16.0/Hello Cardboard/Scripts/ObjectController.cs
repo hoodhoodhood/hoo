@@ -33,6 +33,8 @@ public class ObjectController : MonoBehaviour
     /// The material to use when this object is active (gazed at).
     /// </summary>
     public Material GazedAtMaterial;
+    public float aaa = 0;
+    public int swc = 1;
 
     // The objects are about 1 meter in radius, so the min/max target distance are
     // set so that the objects are always within the room (which is about 5 meters
@@ -119,5 +121,32 @@ public class ObjectController : MonoBehaviour
         {
             _myRenderer.material = gazedAt ? GazedAtMaterial : InactiveMaterial;
         }
+    }
+    
+
+    private void Update()
+    {
+        //transform.Rotate(Vector3.up * Time.deltaTime * 100);
+        transform.Rotate(Vector3.right * Time.deltaTime * 100);
+        if (aaa > 2 && swc != 0)
+        {
+            swc = 0;
+        }
+        else if (aaa <= 2 && swc == 1)
+        {
+            aaa += 0.004f;
+        }
+        else if (swc == 0 && aaa >= 0)
+        {
+            aaa -= 0.004f;
+        }
+        else if (swc == 0 && aaa < 0)
+        {
+            swc = 1;
+        }
+        transform.localScale = new Vector3(1 + aaa, 1 + aaa, 1 + aaa);
+        /*
+        */
+        Debug.Log(swc); 
     }
 }

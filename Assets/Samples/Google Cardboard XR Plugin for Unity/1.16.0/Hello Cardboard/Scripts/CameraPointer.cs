@@ -44,6 +44,7 @@ public class CameraPointer : MonoBehaviour
                 _gazedAtObject?.SendMessage("OnPointerExit");
                 _gazedAtObject = hit.transform.gameObject;
                 _gazedAtObject.SendMessage("OnPointerEnter");
+                StartCoroutine(Click());
             }
         }
         else
@@ -58,5 +59,11 @@ public class CameraPointer : MonoBehaviour
         {
             _gazedAtObject?.SendMessage("OnPointerClick");
         }
+    }
+
+    public IEnumerator Click()
+    {
+        yield return new WaitForSeconds(3f);
+        _gazedAtObject?.SendMessage("OnPointerClick");
     }
 }
